@@ -7,46 +7,22 @@ using namespace std;
 
 int main ()
 {	
-	long double q=1.602176634e-19;
-	long double m_e=9.1093837015e-31;
 	long double hbar=1.0545718176461565e-34;
-	long double nm=1e-9;
-	int i;
-	cout<<"Ecuacion de Schrodinger."<<endl;
-	cout<<"Ingrese el numero de potenciales a analizar: ";
-	cin>>i;
-	
-	float E;
-	cout<<"Ingrese la energia en eV: ";
-	cin>>E;
-	long double Eq=E*q;
-	
-	long double v[i];
-	long double V[i];
-	for (int j=0; j<i; j++)
-	{
-		cout<<"Ingrese el valor del potencial #"<<j+1<<" en eV: ";
-		cin>>v[j];
-		V[j]=v[j]*q;
-	}
-	
-	long double masa[i];
-	long double me[i];
-	for (int j=0; j<i; j++)
-	{
-		cout<<"Ingrese el valor de la masa efectiva #"<<j+1<<": ";
-		cin>>masa[j];
-		me[j]=masa[j]*m_e;
-	}
-	
-	long double z[i];
-	long double zetas[i];
-	for (int j=0; j<i; j++)
-	{
-		cout<<"Ingrese el valor del tamaño de la z #"<<j+1<<" en nm: ";
-		cin>>z[j];
-		zetas[j]=z[j]*nm;
-	}
+	//Ejemplo de Matriz de Transferencia
+//Zetas
+long double zetas[4]={0,6e-9,9e-9,15e-9,};
+int i=4;
+// Energias
+long double q=1.602176634e-19;
+long double V0=0.5*q;
+long double V[4]={V0, 0, V0, V0};
+
+//Masas Efectivas
+long double m_e=9.1093837015e-31;
+long double me[4]={m_e,m_e,m_e,m_e};
+
+//Energia
+long double Eq=0.25*q;
 complex <long double> k[i];
 complex <long double> kt[i];
 complex <long double> res1;
@@ -96,22 +72,23 @@ for (int j=0; j<i-1; j++)
 	mt[0][1]=T12;
 	mt[1][0]=T21;
 	mt[1][1]=T22;
-	cout<<"Matriz "<<j+1<<" = "<<endl;
+	
+	cout<<endl<<"Matriz "<<j+1<<" = "<<endl<<endl;;
 	cout<<mt[0][0]<<" , "<<mt[0][1]<<"\n";
 	cout<<mt[1][0]<<" , "<<mt[1][1]<<"\n\n";
+	
 	T_11 =mr[0][0]*mt[0][0]+mr[0][1]*mt[1][0];
-//	cout<<"T11 = "<<T_11;
+	cout<<"T_11 = "<<T_11<<endl;
 	T_12 =mr[0][0]*mt[0][1]+mr[0][1]*mt[1][1];
-//	cout<<"T12 = "<<T_12;
+    cout<<"T_12 = "<<T_12<<endl;
 	T_21 =mr[1][0]*mt[0][0]+mr[1][1]*mt[1][0];
-//	cout<<"T21 = "<<T_21;
+    cout<<"T_21 = "<<T_21<<endl;
 	T_22 =mr[1][0]*mt[0][1]+mr[1][1]*mt[1][1];
-//	cout<<"T22 = "<<T_22;
-	T_11 = mr[0][0];
-	cout<<endl<<"mr 0 0"<<mr[0][0];
-	T_12 = mr[0][1];
-	T_21 = mr[1][0];
-	T_22 = mr[1][1];
+    cout<<"T_22 = "<<T_22<<endl;
+	mr[0][0]=  T_11;
+    mr[0][1] = T_12;
+    mr[1][0] = T_21;
+    mr[1][1] = T_22;
 }
 cout<<"´T´ total = "<<endl;
     cout<<mr[0][0]<<" , "<<mr[0][1]<<"\n";
