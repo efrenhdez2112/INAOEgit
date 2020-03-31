@@ -1,0 +1,49 @@
+Este programa permitirá al usuario calcular el valor energético minimo en el cual se encuentra la función de onda.
+
+Se crean los arrays:
+
+   zetas[];
+   V[];
+   meff[];
+    Emax, Emin;
+       Emax = El potencial mayor que declare el usuario.
+       Emin = El potencial menor (deberia ser cero).
+
+     "Ingrese la precision que requiera en porcentaje".
+    cin>>precision;
+
+
+Se declara como funcion
+complex <long double> o void (se le dan los arrays de: zetas, ks, potenciales, masas, energias y la precision)
+{
+    De acuerdo a la precision:
+     RangoEnergias = Emax-Emin;
+     PrecRango = RangoEnergias/precision;
+    
+    Se escribe un for para guardar las energias:
+      for n<Precision
+       {  
+          Energias += PrecRango;
+       } 
+    
+    Se inicializa A y B:
+     A=1;
+     B=-1;
+
+    Se escribe un for que abarque el array de las energias con la precision establecida:
+    for n<Energias
+   {
+    Se calcula la transmision total.
+     An, Bn = T.(A,B)
+       Se escribe un if:
+        if A<0 o B>0
+        { 
+          Se selecciona la energia anterior y se empieza a aplicar el metodo de biseccion.
+        } 
+          Continua la transmision total hasta encontrar el cambio de valores.
+   }
+    
+     Ya encontrado el valor, se realiza el metodo de biseccion (de acuerdo a ejemplos en internet de C++)
+    
+     Se encuentran las raices y se imprime el valor energetico minimo.
+}
